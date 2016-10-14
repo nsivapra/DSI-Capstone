@@ -97,6 +97,21 @@ After creating the simple regression models I decided to expand on the models by
 <p>Similar to the classification tree above, we can use, the importance values, and expected value to determine the best path in predicting the number of refugees. Based on the tree Population, and Refugees 2010 were the factors that reached the highest value node. The lowest value node contains the variable Population, Refugees 2010, and Density.</p>
 
 <h3>
+<a id="map-visualization" class="anchor" href="#map-visualization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Map Visualization</h3>
+
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Report/map_2010.html" alt=""></p>
+
+<p>By looking into the folium visualization for the differences in refugees we can see that Turkey had the highest increase in their refugees from 2010. Some countries, including Canada and Syria have decreased the number of accepted refugees due to recent conflicts and political protest.</p>
+
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Report/map_2015.html" alt=""></p>
+
+<p>Above is the map visualization for 2015</p>
+
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Report/map_diff.html" alt=""></p>
+
+<p>The visualization above looks into the difference in refugee acceptance in 2010 and 2015.</p>
+
+<h3>
 <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h3>
 
 <p>The linear regression R^2 shows there is a moderate amount of variance between the predictor variables and the baseline model. I initially tried modeling with all the variables, but realized by dropping Civil War and Children out of School the R^2 improved by 0.05. I tried improving the R^2 by using regularization methods, including RidgeCV, LassoCV, and ElasticNetCV. However; these methods didn't improve the models and ended up having a worse score. Looking at the logistic regression R^2, we can say the predictor variables in the model were extremely helpful in predicting the Continent.
