@@ -80,6 +80,18 @@ murders. Overall Europe has the lowest value for both Murder Rate and Children o
 <p>My initial models include a simple Linear and Logistic model trying to find the parameters that created the best model. The Linear Regression model used the number of refugees in 2010, Population of the country, recent famine, Female, male population, and number of immigrants to predict the number of refugees in 2015. I additionally used various cross validation methods, including RidgeCV, ElasticNetCV, and LassoCV to get the best R^2. However; the values were worse than the original Linear Model. I included a logistic model to see whether a country's continent can be predicted based on various variables. I later created a target and predictor variable that would predict whether a country had a Civil War in the past 15 years based on the Number of Refugees in 2010, 2015, Murder Rate, children out of primary school, size of the country in miles, and whether the country had a recent famine. The second set of variables is similar to the first except I predicted Famine, and used Civil War instead of Famine as the predictor variable. These variables would later be used in the ROC and PR curve to see how the model predicts compared to the baseline accuracy.
 After creating the simple regression models I decided to expand on the models by creating linear models with PCA, and Decision Tree models. The PCA model is helpful in creating an axis around each variable which decreases variation and improves the model's score. The Decision Tree model uses an algorithm model similar to a binary tree that traverses through each node trying to see the best variables that predict the target variable. Using the variables I used in the logistic model to predict the continent, I created a Decision Tree classification model. I also created a Decision Tree Regression model to predict the number of refugees in 2015 using the same variables as the linear model.</p>
 
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/Civil.png" alt=""></p>
+
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/Famine.png" alt=""></p>
+
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/Civil_War.png" alt=""></p>
+
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/Recent_Famine.png" alt=""></p>
+
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/decision_cont.png" alt=""></p>
+
+<p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/decision_ref.png" alt=""></p>
+
 <h3>
 <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h3>
 
