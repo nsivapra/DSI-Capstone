@@ -171,6 +171,7 @@ pcs = pca.transform(X_linear)
 pca_linreg = LinearRegression()
 pca_scores = cross_val_score(pca_linreg, pcs[:,0:10], y_linear, cv=5)
 print np.mean(pca_scores)
+
 R2 0.410719809902
 </code></pre>
 
