@@ -87,6 +87,47 @@ murders. Overall Europe has the lowest value for both Murder Rate and Children o
 <p>My initial models include a simple Linear and Logistic model trying to find the parameters that created the best model. The Linear Regression model used the number of refugees in 2010, Population of the country, recent famine, Female, male population, and number of immigrants to predict the number of refugees in 2015. I additionally used various cross validation methods, including RidgeCV, ElasticNetCV, and LassoCV to get the best R^2. However; the values were worse than the original Linear Model. I included a logistic model to see whether a country's continent can be predicted based on various variables. I later created a target and predictor variable that would predict whether a country had a Civil War in the past 15 years based on the Number of Refugees in 2010, 2015, Murder Rate, children out of primary school, size of the country in miles, and whether the country had a recent famine. The second set of variables is similar to the first except I predicted Famine, and used Civil War instead of Famine as the predictor variable. These variables would later be used in the ROC and PR curve to see how the model predicts compared to the baseline accuracy.
 After creating the simple regression models I decided to expand on the models by creating linear models with PCA, and Decision Tree models. The PCA model is helpful in creating an axis around each variable which decreases variation and improves the model's score. The Decision Tree model uses an algorithm model similar to a binary tree that traverses through each node trying to see the best variables that predict the target variable. Using the variables I used in the logistic model to predict the continent, I created a Decision Tree classification model. I also created a Decision Tree Regression model to predict the number of refugees in 2015 using the same variables as the linear model.</p>
 
+<h2>
+<a id="linear-regression" class="anchor" href="#linear-regression" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Linear Regression</h2>
+
+<pre><code>value = refugee_df.filter(regex = 'Ref|Pop|Fam|Fem|Mal|Imm')
+rem = refugee_df.filter(regex = '2015')
+col = value.columns - rem.columns
+X_linear = refugee_df[col]
+ss = StandardScaler()
+Xn = ss.fit_transform(X_linear)
+y_linear = refugee_df['Refugees_2015'].values
+
+lm_linear = LinearRegression()
+model = lm_linear.fit(X_linear, y_linear)
+scores = cross_val_score(lm_linear, X_linear, y_linear, cv=5) #CV to prevent overfitting.
+print "R2", np.mean(scores)
+
+R^2 0.410719809899
+</code></pre>
+
+<h2>
+<a id="logistic-regression" class="anchor" href="#logistic-regression" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Logistic Regression</h2>
+
+<pre><code>value = refugee_df.filter(regex = 'Ref|Rate|Child|Are|Fam|Fem|Mal|Continent')
+rem = refugee_df.filter(regex = 'Cont')
+col = value.columns - rem.columns
+X_cont = refugee_df[col]
+ss = StandardScaler()
+Xn_cont = ss.fit_transform(X_cont)
+y_cont = refugee_df['Continent'].values
+
+lr_cont = LogisticRegression()
+model = lr_cont.fit(Xn_cont, y_cont)
+score = cross_val_score(lr_cont, Xn_cont, y_cont, cv = 5)
+print "R2", np.mean(score)
+
+R2 0.594395568589
+</code></pre>
+
+<h2>
+<a id="rocpr-curves" class="anchor" href="#rocpr-curves" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ROC/PR Curves</h2>
+
 <p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/Civil.png" alt=""></p>
 
 <p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/Famine.png" alt=""></p>
@@ -94,6 +135,23 @@ After creating the simple regression models I decided to expand on the models by
 <p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/Civil_War.png" alt=""></p>
 
 <p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/Recent_Famine.png" alt=""></p>
+
+<h2>
+<a id="pca" class="anchor" href="#pca" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PCA</h2>
+
+<pre><code>from sklearn.decomposition import PCA
+
+pca = PCA(n_components=6)
+pca.fit(X_linear.values)
+pcs = pca.transform(X_linear)
+pca_linreg = LinearRegression()
+pca_scores = cross_val_score(pca_linreg, pcs[:,0:10], y_linear, cv=5)
+print np.mean(pca_scores)
+R2 0.410719809902
+</code></pre>
+
+<h2>
+<a id="decision-tree-regressionclassification" class="anchor" href="#decision-tree-regressionclassification" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Decision Tree Regression/Classification</h2>
 
 <p><img src="https://rawgit.com/nsivapra/DSI-Capstone/master/Images/decision_cont.png" alt=""></p>
 
