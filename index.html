@@ -1,44 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Refugees Around the World by nsivapra</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Refugees Around the World :  Nivetha Sivaprakasam">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Refugees Around the World</title>
   </head>
+
   <body>
 
-      <header>
-        <h1>Refugees Around the World</h1>
-        <p> Nivetha Sivaprakasam</p>
-      </header>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/nsivapra/DSI-Capstone">View on GitHub</a>
 
-      <div id="banner">
-        <span id="logo"></span>
+          <h1 id="project_title">Refugees Around the World</h1>
+          <h2 id="project_tagline"> Nivetha Sivaprakasam</h2>
 
-        <a href="https://github.com/nsivapra/DSI-Capstone" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/nsivapra/DSI-Capstone/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/nsivapra/DSI-Capstone/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/nsivapra/DSI-Capstone/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/nsivapra/DSI-Capstone/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h3>
 <a id="about-me" class="anchor" href="#about-me" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About Me</h3>
 
@@ -104,7 +96,7 @@ murders. Overall Europe has the lowest value for both Murder Rate and Children o
 <h3>
 <a id="model-description" class="anchor" href="#model-description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Model Description</h3>
 
-<p>My initial models include a simple Linear and Logistic model trying to find the parameters that created the best model. The Linear Regression model used the number of refugees in 2010, Population of the country, recent famine, Female, male population, and number of immigrants to predict the number of refugees in 2015. I additionally used various cross validation methods, including RidgeCV, ElasticNetCV, and LassoCV to get the best R^2. However; the values were worse than the original Linear Model. I included a logistic model to see whether a country's continent can be predicted based on various variables. I later created a target and predictor variable that would predict whether a country had a Civil War in the past 15 years based on the Number of Refugees in 2010, 2015, Murder Rate, children out of primary school, size of the country in miles, and whether the country had a recent famine. The second set of variables is similar to the first except I predicted Famine, and used Civil War instead of Famine as the predictor variable. These variables would later be used in the ROC and PR curve to see how the model predicts compared to the baseline accuracy.
+<p>My initial models include a simple Linear and Logistic model trying to find the parameters that created the best model. The Linear Regression model used the number of refugees in 2010, Population of the country, recent famine, Female, male population, and number of immigrants to predict the number of refugees in 2015. I additionally used various cross validation methods, including RidgeCV, ElasticNetCV, and LassoCV to get the best R2. However; the values were worse than the original Linear Model. I included a logistic model to see whether a country's continent can be predicted based on various variables. I later created a target and predictor variable that would predict whether a country had a Civil War in the past 15 years based on the Number of Refugees in 2010, 2015, Murder Rate, children out of primary school, size of the country in miles, and whether the country had a recent famine. The second set of variables is similar to the first except I predicted Famine, and used Civil War instead of Famine as the predictor variable. These variables would later be used in the ROC and PR curve to see how the model predicts compared to the baseline accuracy.
 After creating the simple regression models I decided to expand on the models by creating linear models with PCA, and Decision Tree models. The PCA model is helpful in creating an axis around each variable which decreases variation and improves the model's score. The Decision Tree model uses an algorithm model similar to a binary tree that traverses through each node trying to see the best variables that predict the target variable. Using the variables I used in the logistic model to predict the continent, I created a Decision Tree classification model. I also created a Decision Tree Regression model to predict the number of refugees in 2015 using the same variables as the linear model.</p>
 
 <h2>
@@ -123,7 +115,7 @@ model = lm_linear.fit(X_linear, y_linear)
 scores = cross_val_score(lm_linear, X_linear, y_linear, cv=5) #CV to prevent overfitting.
 print "R2", np.mean(scores)
 
-R^2 0.410719809899
+R2 0.410719809899
 </code></pre>
 
 <h2>
@@ -202,15 +194,20 @@ R2 0.410719809902
 <h3>
 <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h3>
 
-<p>The linear regression R^2 shows there is a moderate amount of variance between the predictor variables and the baseline model. I initially tried modeling with all the variables, but realized by dropping Civil War and Children out of School the R^2 improved by 0.05. I tried improving the R^2 by using regularization methods, including RidgeCV, LassoCV, and ElasticNetCV. However; these methods didn't improve the models and ended up having a worse score. Looking at the logistic regression R^2, we can say the predictor variables in the model were extremely helpful in predicting the Continent.
+<p>The linear regression R2 shows there is a moderate amount of variance between the predictor variables and the baseline model. I initially tried modeling with all the variables, but realized by dropping Civil War and Children out of School the R2 improved by 0.05. I tried improving the R2 by using regularization methods, including RidgeCV, LassoCV, and ElasticNetCV. However; these methods didn't improve the models and ended up having a worse score. Looking at the logistic regression R2, we can say the predictor variables in the model were extremely helpful in predicting the Continent.
 Based on the country's profile we can say there is an impact on the number of refugees who will find asylum in the country. If there a high number of refugees in 2010, GDP, and number of immigrants there is a higher chance of refugees in 2015. If there is a high number of Rainfall, and Murder Rate there is a chance of a descent in the number of refugees. By reducing racism, and providing a safer environment in other countries, there is a chance more refugees would seek to find asylum.</p>
       </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/nsivapra">nsivapra</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Refugees Around the World maintained by <a href="https://github.com/nsivapra">nsivapra</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
+
   </body>
 </html>
